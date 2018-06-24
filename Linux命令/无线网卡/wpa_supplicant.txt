@@ -1,0 +1,12 @@
+打开网卡
+ifconfig wlp0s29f7u1 up
+后台运行wpa_supplicant进程：
+wpa_supplicant -B -i wlp0s29f7u1 -c /etc/wpa_supplicant/wpa_supplicant.conf
+查找周围的无线网络: 
+iwlist wlp0s29f7u1 scan | grep ESSID
+连接无线网络：
+iwconfig wlp0s29f7u1 essid "jam"
+DHCP方式获取ip：
+dhclient wlp0s29f7u1
+测试是否联通：
+ping www.baidu.com

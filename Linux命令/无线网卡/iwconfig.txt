@@ -1,0 +1,21 @@
+1、用“iwconfig”命令来显示无线网卡(eth0、eth1或eth2)的信息;
+
+2、设置无线网卡的操作模式为Managed，命令如下：
+iwconfig wlp0s29f7u1 mode Managed
+
+3、如果采用了WEP加密，需要设置WEP密码，命令如下：
+iwconfig wlp0s29f7u1 key s:js000302
+#对40位和128位加密，password分别为6位和10位的十六进制数字。
+
+4、设置SSID，其中ESSID为Access Point的SSID。命令如下：
+iwconfig wlp0s29f7u1 essid jam
+
+5、创建/etc/sysconfig/network/ifcfg-ethX文件，使得机器每次启动时，无线网卡都会自动获得IP地址。该文件内容如下：
+vim /etc/sysconfig/network/ifcfg-wlp0s29f7u1
+BOOTPROTO='dhcp'
+MTU=''
+REMOTE_IPADDR=''
+STARTMODE='onboot'
+UNIQUE=''
+6、通过下面的命令启动无线网卡：
+ifconfig wlp0s29f7u1 up
